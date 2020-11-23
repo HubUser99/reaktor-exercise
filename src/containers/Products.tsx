@@ -11,7 +11,7 @@ const Products = ({ products }: Props) => {
     return (
         <div className={styles.productsWrapper}>
             {products.map((product) => (
-                <Product product={product} />
+                <Product product={product} key={product.id} />
             ))}
         </div>
     );

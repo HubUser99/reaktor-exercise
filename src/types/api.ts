@@ -2,7 +2,7 @@ export type ProductsApi = Array<ProductItemApi>;
 
 export interface ProductItemApi {
     id: string;
-    type: "shirts" | "jackets" | "accessories";
+    type: CategoryApi;
     name: string;
     color: Array<string>;
     price: number;
@@ -16,5 +16,7 @@ export interface AvailabilitiesApi {
 
 export interface AvailabilityItemApi {
     id: string;
-    dataPayload: string;
+    DATAPAYLOAD: string;
 }
+
+export type CategoryApi = "shirts" | "jackets" | "accessories";
