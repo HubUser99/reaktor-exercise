@@ -14,7 +14,7 @@ const Product = ({ product }: Props) => {
             <p>Color: {product.color}</p>
             <p>Manufacturer: {product.manufacturer}</p>
             <p>Price: {product.price}</p>
-            <p>Quantity: {product.quantityAvailable ?? "not available"}</p>
+            <p>Quantity: {product.quantityAvailable}</p>
         </div>
     );
 };
