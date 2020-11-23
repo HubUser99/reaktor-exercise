@@ -1,26 +1,224 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import Products from "containers/Products";
+import { ProductsApi } from "types/api";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+const App = () => {
+    const products: ProductsApi = [
+        {
+            id: "1",
+            name: "Shirt 1",
+            type: "shirts",
+            color: ["Black"],
+            manufacturer: "HM",
+            price: 100,
+        },
+        {
+            id: "2",
+            name: "Shirt 2",
+            type: "shirts",
+            color: ["Black"],
+            manufacturer: "HM",
+            price: 100,
+        },
+        {
+            id: "1",
+            name: "Shirt 1",
+            type: "shirts",
+            color: ["Black"],
+            manufacturer: "HM",
+            price: 100,
+        },
+        {
+            id: "2",
+            name: "Shirt 2",
+            type: "shirts",
+            color: ["Black"],
+            manufacturer: "HM",
+            price: 100,
+        },
+        {
+            id: "1",
+            name: "Shirt 1",
+            type: "shirts",
+            color: ["Black"],
+            manufacturer: "HM",
+            price: 100,
+        },
+        {
+            id: "2",
+            name: "Shirt 2",
+            type: "shirts",
+            color: ["Black"],
+            manufacturer: "HM",
+            price: 100,
+        },
+        {
+            id: "1",
+            name: "Shirt 1",
+            type: "shirts",
+            color: ["Black"],
+            manufacturer: "HM",
+            price: 100,
+        },
+        {
+            id: "2",
+            name: "Shirt 2",
+            type: "shirts",
+            color: ["Black"],
+            manufacturer: "HM",
+            price: 100,
+        },
+        {
+            id: "1",
+            name: "Shirt 1",
+            type: "shirts",
+            color: ["Black"],
+            manufacturer: "HM",
+            price: 100,
+        },
+        {
+            id: "2",
+            name: "Shirt 2",
+            type: "shirts",
+            color: ["Black"],
+            manufacturer: "HM",
+            price: 100,
+        },
+        {
+            id: "1",
+            name: "Shirt 1",
+            type: "shirts",
+            color: ["Black"],
+            manufacturer: "HM",
+            price: 100,
+        },
+        {
+            id: "2",
+            name: "Shirt 2",
+            type: "shirts",
+            color: ["Black"],
+            manufacturer: "HM",
+            price: 100,
+        },
+        {
+            id: "1",
+            name: "Shirt 1",
+            type: "shirts",
+            color: ["Black"],
+            manufacturer: "HM",
+            price: 100,
+        },
+        {
+            id: "2",
+            name: "Shirt 2",
+            type: "shirts",
+            color: ["Black"],
+            manufacturer: "HM",
+            price: 100,
+        },
+        {
+            id: "1",
+            name: "Shirt 1",
+            type: "shirts",
+            color: ["Black"],
+            manufacturer: "HM",
+            price: 100,
+        },
+        {
+            id: "2",
+            name: "Shirt 2",
+            type: "shirts",
+            color: ["Black"],
+            manufacturer: "HM",
+            price: 100,
+        },
+        {
+            id: "1",
+            name: "Shirt 1",
+            type: "shirts",
+            color: ["Black"],
+            manufacturer: "HM",
+            price: 100,
+        },
+        {
+            id: "2",
+            name: "Shirt 2",
+            type: "shirts",
+            color: ["Black"],
+            manufacturer: "HM",
+            price: 100,
+        },
+        {
+            id: "1",
+            name: "Shirt 1",
+            type: "shirts",
+            color: ["Black"],
+            manufacturer: "HM",
+            price: 100,
+        },
+        {
+            id: "2",
+            name: "Shirt 2",
+            type: "shirts",
+            color: ["Black"],
+            manufacturer: "HM",
+            price: 100,
+        },
+        {
+            id: "1",
+            name: "Shirt 1",
+            type: "shirts",
+            color: ["Black"],
+            manufacturer: "HM",
+            price: 100,
+        },
+        {
+            id: "2",
+            name: "Shirt 2",
+            type: "shirts",
+            color: ["Black"],
+            manufacturer: "HM",
+            price: 100,
+        },
+        {
+            id: "1",
+            name: "Shirt 1",
+            type: "shirts",
+            color: ["Black"],
+            manufacturer: "HM",
+            price: 100,
+        },
+        {
+            id: "2",
+            name: "Shirt 2",
+            type: "shirts",
+            color: ["Black"],
+            manufacturer: "HM",
+            price: 100,
+        },
+        {
+            id: "1",
+            name: "Shirt 1",
+            type: "shirts",
+            color: ["Black"],
+            manufacturer: "HM",
+            price: 100,
+        },
+        {
+            id: "2",
+            name: "Shirt 2",
+            type: "shirts",
+            color: ["Black"],
+            manufacturer: "HM",
+            price: 100,
+        },
+    ];
+
+    return (
+        <div className="App">
+            <Products products={products} />
+        </div>
+    );
+};
 
 export default App;
