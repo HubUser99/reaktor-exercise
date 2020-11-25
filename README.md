@@ -1,6 +1,16 @@
-# Getting Started with Create React App
+# Warehouse Explorer
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Description
+
+This software was created in order to provide warehouse employees a possibility to track products by categories.
+The software provides easy way to navigate between multiple categories.
+It also shows necessary information about each product in an easy-to-read format.
+
+## Features
+
+- The software accounts for the known API errors that might occur during the usage of the program.
+- The loading time of the software was optimized to provide better user experience even with large amount of products.
+- The interface is made so all the critical information is highlighted for fast tracking.
 
 ## Available Scripts
 
@@ -38,9 +48,3 @@ If you aren’t satisfied with the build tool and configuration choices, you can
 Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
 
 You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
