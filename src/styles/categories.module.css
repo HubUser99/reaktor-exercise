@@ -1,0 +1,36 @@
+.categoriesButtonsWrapper {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    width: 100%;
+}
+
+.categoriesButtonsWrapper > button {
+    font-family: monospace;
+    font-size: large;
+    letter-spacing: 4px;
+    font-weight: 600;
+    text-transform: uppercase;
+    outline: none;
+    width: calc(100% / 3);
+    height: 8vh;
+    background-color: #303040;
+    color: #53dd41;
+    border: 8px solid #dd4141;
+}
+
+/* .categoriesButtonsWrapper > button:active {
+    background-color: hsl(0, 0%, 0%);
+    border: 8px solid #dd4141;
+} */
+
+.categoriesButtonsWrapper > button:focus {
+    background-color: hsl(0, 0%, 15%);
+    border: 8px solid hsl(0, 90%, 56%);
+}
+
+@media only screen and (max-width: 600px) {
+    .categoriesButtonsWrapper > button {
+        letter-spacing: normal;
+    }
+}

@@ -11,7 +11,7 @@ export interface ProductItemApi {
 
 export interface AvailabilitiesApi {
     code: number;
-    response: Array<AvailabilityItemApi>;
+    response: AvailabilityItemApi[];
 }
 
 export interface AvailabilityItemApi {

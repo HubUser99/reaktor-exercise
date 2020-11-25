@@ -7,14 +7,38 @@ interface Props {
 }
 
 const Product = ({ product }: Props) => {
+    const getStyleForQuantity = () => {
+        switch(product.quantityAvailable) {
+            case "LESSTHAN10":
+                return styles.lessThanTen;
+            case "OUTOFSTOCK":
+                return styles.outOfStock;
+            case "not available":
+                return styles.outOfStock;
+            default:
+                return "";
+        }
+    }
+
     return (
         <div className={styles.root}>
-            <h5>{product.name}</h5>
-            <p>Type: {product.type}</p>
-            <p>Color: {product.color}</p>
-            <p>Manufacturer: {product.manufacturer}</p>
-            <p>Price: {product.price}</p>
-            <p>Quantity: {product.quantityAvailable}</p>
+            <div className={styles.title}>{product.name}</div>
+            <div className={styles.property}>
+               <div className={styles.type}>Type</div>
+               <div>{product.type}</div>
+            </div>
+            <div className={styles.property}>
+               <div className={styles.manufacturer}>Manufacturer</div>
+               <div>{product.manufacturer}</div>
+            </div>
+            <div className={styles.property}>
+               <div className={styles.price}>Price</div>
+               <div>{product.price}</div>
+            </div>
+            <div className={styles.property}>
+               <div className={styles.quantity}>Quantity</div>
+               <div className={getStyleForQuantity()}>{product.quantityAvailable}</div>
+            </div>
         </div>
     );
 };
