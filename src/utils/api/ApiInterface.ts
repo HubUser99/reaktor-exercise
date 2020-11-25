@@ -10,7 +10,7 @@ export const getProductsByCategory = async (
 ): Promise<ProductsApi> => {
     const productsUrl = parseProductsUrl(category);
     const response = await tryFetch(productsUrl, () => true);
-
+    
     return response;
 };
 
@@ -18,7 +18,10 @@ export const getAvailabilitiesByBrand = async (
     brand: string
 ): Promise<AvailabilitiesApi | undefined> => {
     const availabilitiesUrl = parseAvailabilitiesUrl(brand);
-    const response = await tryFetch(availabilitiesUrl, (data) => data.response.toString() !== "[]");
+    const response = await tryFetch(
+        availabilitiesUrl,
+        (data) => data.response.toString() !== "[]"
+    );
 
     return response;
 };

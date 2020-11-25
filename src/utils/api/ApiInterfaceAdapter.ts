@@ -1,5 +1,5 @@
 import { CategoryApi } from "types/api";
-import { ProductsType } from "types/types";
+import { AvailabilitiesType, ProductsType } from "types/types";
 import { parseAvailabilityDataPayload } from "utils/common/availabilitiesUtils";
 import { getProductsBrands } from "utils/common/productsUtils";
 import {
@@ -7,38 +7,53 @@ import {
     getProductsByCategory,
 } from "./ApiInterface";
 
-export const getProductsWithAvailabilities = async (category: CategoryApi) => {
+export const getProductsWithEmptyAvailabilities = async (
+    category: CategoryApi
+) => {
     const products = await getProductsByCategory(category);
 
-    const productsBrands = getProductsBrands(products);
-
-    const availabilities = await Promise.all(
-        productsBrands.map((brand) => getAvailabilitiesByBrand(brand))
-    );
-
-    const availabilitiesData = availabilities.flatMap(
-        (availability) => availability?.response ?? []
-    );
-
-    const availabilitiesProductsIds = availabilitiesData.map((data) => data.id);
-
-    const availabilitiesPayload = availabilitiesData.map((data) =>
-        parseAvailabilityDataPayload(data.DATAPAYLOAD)
-    );
-
     const result: ProductsType = products.map((product) => {
-        const { id } = product;
-        const payloadIndex = availabilitiesProductsIds.indexOf(id.toUpperCase());
-        const payload =
-            payloadIndex > -1
-                ? availabilitiesPayload[payloadIndex]
-                : "not available";
+        const payload = "Loading...";
 
         return {
             ...product,
             quantityAvailable: payload,
         };
     });
+
+    return result;
+};
+
+export const getAvailabilitiesForProducts = async (products: ProductsType) => {
+    const productsBrands = getProductsBrands(products);
+
+    const availabilitiesCategories = await Promise.all(
+        productsBrands.map((brand) => getAvailabilitiesByBrand(brand))
+    );
+
+    const availabilitiesCategoriesData = availabilitiesCategories.flatMap(
+        (availabilities) => availabilities?.response ?? []
+    );
+
+    const result = new Map(
+        availabilitiesCategoriesData.map((data) => [
+            data.id,
+            parseAvailabilityDataPayload(data.DATAPAYLOAD),
+        ])
+    );
+
+    return result;
+};
+
+export const getProductsWithAvailabilities = (
+    products: ProductsType,
+    availabilities: AvailabilitiesType
+) => {
+    const result = products.map((product) => ({
+        ...product,
+        quantityAvailable:
+            availabilities.get(product.id.toUpperCase()) ?? "not available",
+    }));
 
     return result;
 };

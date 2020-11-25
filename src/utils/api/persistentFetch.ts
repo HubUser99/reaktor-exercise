@@ -1,5 +1,3 @@
-import { AvailabilitiesApi } from "types/api";
-
 const MAX_TRIES = 5;
 
 const requestInit: RequestInit = {
