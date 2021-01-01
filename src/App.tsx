@@ -19,66 +19,17 @@ const App = () => {
     ] = useState<ProductsType>([]);
 
     const handleFetchProducts = async () => {
-        const shirtsProducts = await getProductsWithEmptyAvailabilities(
-            "shirts"
-        );
-        setShirtsProducts(shirtsProducts);
+        const products = await getProductsWithAvailabilities();
 
-        setFirstCall(true);
-
-        const jacketsProducts = await getProductsWithEmptyAvailabilities(
-            "jackets"
-        );
-        setJacketsProducts(jacketsProducts);
-
-        const accessoriesProducts = await getProductsWithEmptyAvailabilities(
-            "accessories"
-        );
-        setAccessoriesProducts(accessoriesProducts);
-    };
-
-    const handleFetchAvailabilities = async () => {
-        const availabilities = await getAvailabilitiesForProducts([
-            ...shirtsProducts,
-            ...jacketsProducts,
-            ...accessoriesProducts,
-        ]);
-
-        const shirtsProductsWithAvailabilities = getProductsWithAvailabilities(
-            shirtsProducts,
-            availabilities
-        );
-        setShirtsProducts(shirtsProductsWithAvailabilities);
-
-        const jacketsProductsWithAvailabilities = getProductsWithAvailabilities(
-            jacketsProducts,
-            availabilities
-        );
-        setJacketsProducts(jacketsProductsWithAvailabilities);
-
-        const accessoriesProductsWithAvailabilities = getProductsWithAvailabilities(
-            accessoriesProducts,
-            availabilities
-        );
-        setAccessoriesProducts(accessoriesProductsWithAvailabilities);
+        setShirtsProducts(products.shirts);
+        setJacketsProducts(products.jackets);
+        setAccessoriesProducts(products.accessories);
     };
 
     useEffect(() => {
         handleFetchProducts();
-        setInterval(handleFetchProducts, 300000);
+        setInterval(handleFetchProducts, 10000);
     }, []);
-
-    useEffect(() => {
-        if (
-            firstCall &&
-            shirtsProducts.length > 0 &&
-            jacketsProducts.length > 0 &&
-            accessoriesProducts.length > 0
-        ) {
-            handleFetchAvailabilities();
-            setFirstCall(false);
-        }
-    }, [shirtsProducts, jacketsProducts, accessoriesProducts]);
 
     return (
         <div className={styles.root}>

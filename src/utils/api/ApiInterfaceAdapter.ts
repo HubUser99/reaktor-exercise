@@ -1,5 +1,5 @@
 import { CategoryApi } from "types/api";
-import { AvailabilitiesType, ProductsType } from "types/types";
+import { AvailabilitiesType, ProductItemType, ProductsType } from "types/types";
 import { parseAvailabilityDataPayload } from "utils/common/availabilitiesUtils";
 import { getProductsBrands } from "utils/common/productsUtils";
 import {
@@ -24,7 +24,9 @@ export const getProductsWithEmptyAvailabilities = async (
     return result;
 };
 
-export const getAvailabilitiesForProducts = async (products: ProductsType) => {
+export const getAvailabilitiesForProducts = async (
+    products: ProductsType
+): Promise<AvailabilitiesType> => {
     const productsBrands = getProductsBrands(products);
 
     const availabilitiesCategories = await Promise.all(
@@ -45,15 +47,50 @@ export const getAvailabilitiesForProducts = async (products: ProductsType) => {
     return result;
 };
 
-export const getProductsWithAvailabilities = (
-    products: ProductsType,
-    availabilities: AvailabilitiesType
-) => {
-    const result = products.map((product) => ({
-        ...product,
-        quantityAvailable:
-            availabilities.get(product.id.toUpperCase()) ?? "not available",
-    }));
+export const getProductsWithAvailabilities = async () => {
+    const products = await Promise.all([
+        getProductsWithEmptyAvailabilities("shirts"),
+        getProductsWithEmptyAvailabilities("jackets"),
+        getProductsWithEmptyAvailabilities("accessories"),
+    ]);
+
+    const availabilities = await getAvailabilitiesForProducts(products.flat());
+
+    const result = products.reduce(
+        (prevState, currentValue, currentIndex) => {
+            const productsWithAvailabilities: ProductsType = currentValue.map(
+                (product) => ({
+                    ...product,
+                    quantityAvailable:
+                        availabilities.get(product.id.toUpperCase()) ??
+                        "not available",
+                })
+            );
+
+            switch (currentIndex) {
+                case 0:
+                    prevState.shirts = productsWithAvailabilities;
+                    break;
+                case 1:
+                    prevState.jackets = productsWithAvailabilities;
+                    break;
+                case 2:
+                    prevState.accessories = productsWithAvailabilities;
+                    break;
+            }
+
+            return prevState;
+        },
+        {
+            shirts: [],
+            jackets: [],
+            accessories: [],
+        } as {
+            shirts: ProductsType;
+            jackets: ProductsType;
+            accessories: ProductsType;
+        }
+    );
 
     return result;
 };
