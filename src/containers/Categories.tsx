@@ -5,6 +5,7 @@ import { CategoryApi } from "types/api";
 import {
     selectAccessoriesProducts,
     selectJacketsProducts,
+    selectProductsStatus,
     selectShirtsProducts,
 } from "utils/store/selectors/productsSelectors";
 import Products from "./Products";
@@ -15,6 +16,9 @@ const Categories = () => {
     const shirtsProducts = useSelector(selectShirtsProducts);
     const jacketsProducts = useSelector(selectJacketsProducts);
     const accessoriesProducts = useSelector(selectAccessoriesProducts);
+    const productsStatus = useSelector(selectProductsStatus);
+
+    const isLoading = productsStatus !== "succeeded";
 
     const getProductsByCategory = () => {
         switch (category) {
@@ -33,7 +37,11 @@ const Categories = () => {
 
     return (
         <>
-            <Products products={getProductsByCategory()} />
+            {isLoading ? (
+                <div className={styles.loadingContainer}>Loading...</div>
+            ) : (
+                <Products products={getProductsByCategory()} />
+            )}
             <div className={styles.categoriesButtonsWrapper}>
                 <button onClick={() => handleCategoryChange("shirts")}>
                     Shirts

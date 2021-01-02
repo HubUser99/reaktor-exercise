@@ -6,6 +6,8 @@ const initialState: ProductsState = {
     shirts: [],
     jackets: [],
     accessories: [],
+    status: "loading",
+    error: null,
 };
 
 const FETCH_PRODUCTS = "products/fetchProducts";
@@ -20,10 +22,21 @@ const productsSlice = createSlice({
     initialState,
     reducers: {},
     extraReducers: (builder) => {
+        builder.addCase(fetchProducts.pending, (state, action) => {
+            state.error = null;
+            state.status = "loading";
+        });
+
         builder.addCase(fetchProducts.fulfilled, (state, action) => {
             state.shirts = action.payload.shirts;
             state.jackets = action.payload.jackets;
             state.accessories = action.payload.accessories;
+            state.status = "succeeded";
+        });
+
+        builder.addCase(fetchProducts.rejected, (state, action) => {
+            state.error = "Products could not be fetched";
+            state.status = "failed";
         });
     },
 });
