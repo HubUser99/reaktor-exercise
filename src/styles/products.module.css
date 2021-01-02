@@ -2,11 +2,3 @@
     display: flex;
     flex-wrap: wrap;
 }
-
-.loadingContainer {
-    min-height: 100vh;
-    text-align: center;
-    padding-top: 20%;
-    color: #53dd41;
-    font-size: large;
-}

@@ -14,17 +14,13 @@ const Products = ({ products }: Props) => {
     const getProductsChunks = () => getChunks(products, CHUNK_SIZE);
     const [lastChunkIndex, setLastChunkIndex] = useState(1);
 
-    const isLoading = products.length === 0;
-
     window.onscroll = (event: Event) => {
         if (window.innerHeight + window.scrollY >= document.body.offsetHeight) {
             setLastChunkIndex((prevState) => prevState + 1);
         }
     };
 
-    return isLoading ? (
-        <div className={styles.loadingContainer}>Loading...</div>
-    ) : (
+    return (
         <div className={styles.productsWrapper}>
             {getProductsChunks()
                 .slice(0, lastChunkIndex)

@@ -19,14 +19,17 @@
     border: 8px solid #dd4141;
 }
 
-/* .categoriesButtonsWrapper > button:active {
-    background-color: hsl(0, 0%, 0%);
-    border: 8px solid #dd4141;
-} */
-
 .categoriesButtonsWrapper > button:focus {
     background-color: hsl(0, 0%, 15%);
     border: 8px solid hsl(0, 90%, 56%);
+}
+
+.loadingContainer {
+    min-height: 100vh;
+    text-align: center;
+    padding-top: 20%;
+    color: #53dd41;
+    font-size: large;
 }
 
 @media only screen and (max-width: 600px) {

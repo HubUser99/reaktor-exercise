@@ -1,26 +1,33 @@
 import React, { useState } from "react";
+import { useSelector } from "react-redux";
 import styles from "styles/categories.module.css";
 import { CategoryApi } from "types/api";
-import { ProductsType } from "types/types";
+import {
+    selectAccessoriesProducts,
+    selectJacketsProducts,
+    selectProductsStatus,
+    selectShirtsProducts,
+} from "utils/store/selectors/productsSelectors";
 import Products from "./Products";
 
-interface Props {
-    shirts: ProductsType;
-    jackets: ProductsType;
-    accessories: ProductsType;
-}
-
-const Categories = ({ shirts, jackets, accessories }: Props) => {
+const Categories = () => {
     const [category, setCategory] = useState<CategoryApi>("shirts");
+
+    const shirtsProducts = useSelector(selectShirtsProducts);
+    const jacketsProducts = useSelector(selectJacketsProducts);
+    const accessoriesProducts = useSelector(selectAccessoriesProducts);
+    const productsStatus = useSelector(selectProductsStatus);
+
+    const isLoading = productsStatus !== "succeeded";
 
     const getProductsByCategory = () => {
         switch (category) {
             case "shirts":
-                return shirts;
+                return shirtsProducts;
             case "jackets":
-                return jackets;
+                return jacketsProducts;
             case "accessories":
-                return accessories;
+                return accessoriesProducts;
         }
     };
 
@@ -30,7 +37,11 @@ const Categories = ({ shirts, jackets, accessories }: Props) => {
 
     return (
         <>
-            <Products products={getProductsByCategory()} />
+            {isLoading ? (
+                <div className={styles.loadingContainer}>Loading...</div>
+            ) : (
+                <Products products={getProductsByCategory()} />
+            )}
             <div className={styles.categoriesButtonsWrapper}>
                 <button onClick={() => handleCategoryChange("shirts")}>
                     Shirts
