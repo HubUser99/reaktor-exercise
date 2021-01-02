@@ -1,43 +1,23 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import styles from "styles/app.module.css";
 import Categories from "containers/Categories";
-import { ProductsType } from "types/types";
-import {
-    getAvailabilitiesForProducts,
-    getProductsWithAvailabilities,
-    getProductsWithEmptyAvailabilities,
-} from "utils/api/ApiInterfaceAdapter";
-import { sleep } from "utils/common/common";
+import { useDispatch } from "react-redux";
+import { fetchProducts } from "utils/store/slices/productsSlice";
 
 const App = () => {
-    const [firstCall, setFirstCall] = useState(true);
-    const [shirtsProducts, setShirtsProducts] = useState<ProductsType>([]);
-    const [jacketsProducts, setJacketsProducts] = useState<ProductsType>([]);
-    const [
-        accessoriesProducts,
-        setAccessoriesProducts,
-    ] = useState<ProductsType>([]);
+    const dispatch = useDispatch();
 
     const handleFetchProducts = async () => {
-        const products = await getProductsWithAvailabilities();
-
-        setShirtsProducts(products.shirts);
-        setJacketsProducts(products.jackets);
-        setAccessoriesProducts(products.accessories);
+        dispatch(fetchProducts());
     };
 
     useEffect(() => {
-        handleFetchProducts();
-        setInterval(handleFetchProducts, 10000);
+        setInterval(handleFetchProducts, 300000);
     }, []);
 
     return (
         <div className={styles.root}>
-            <Categories
-                shirts={shirtsProducts}
-                jackets={jacketsProducts}
-                accessories={accessoriesProducts}
-            />
+            <Categories />
         </div>
     );
 };
