@@ -7,7 +7,7 @@ import { fetchProducts } from "utils/store/slices/productsSlice";
 const App = () => {
     const dispatch = useDispatch();
 
-    const handleFetchProducts = async () => {
+    const handleFetchProducts = () => {
         dispatch(fetchProducts());
     };
 
