@@ -1,2 +1,2 @@
-bash deploy-client &&
-bash deploy-server
+bash scripts/deploy-client.sh &&
+bash scripts/deploy-server.sh
