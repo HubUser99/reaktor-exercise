@@ -1,5 +1,5 @@
 cd ./server &&
 git add . &&
 git commit -a --allow-empty-message -m '' &&
-git push heroku master &&
+git push heroku master --force &&
 cd ..
