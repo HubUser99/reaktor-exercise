@@ -2,6 +2,7 @@ import express, { RequestHandler } from "express";
 import NodeCache from "node-cache";
 import { getProductsWithAvailabilities } from "utils/api/ApiInterfaceAdapter";
 import dotenv from "dotenv";
+import cors from "cors";
 
 dotenv.config();
 
@@ -35,6 +36,8 @@ const cache = (): RequestHandler => {
         }
     };
 };
+
+app.use(cors());
 
 app.get("/", (req, res) => {
     res.send("Hi! This is a caching server for warehouse-explorer.");
