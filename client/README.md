@@ -1,16 +1,4 @@
-# Warehouse Explorer
-
-## Description
-
-This software was created in order to provide warehouse employees a possibility to track products by categories.
-The software provides easy way to navigate between multiple categories.
-It also shows necessary information about each product in an easy-to-read format.
-
-## Features
-
-- The software accounts for the known API errors that might occur during the usage of the program.
-- The loading time of the software was optimized to provide better user experience even with large amount of products.
-- The interface is made so all the critical information is highlighted for fast tracking.
+# Warehouse Explorer Client
 
 ## Available Scripts
 
