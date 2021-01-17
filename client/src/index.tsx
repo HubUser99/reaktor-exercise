@@ -6,8 +6,17 @@ import reportWebVitals from "./reportWebVitals";
 import { Provider } from "react-redux";
 import store from "utils/store/store";
 import { fetchProducts } from "utils/store/slices/productsSlice";
+import { getCacheInterval } from "utils/common/environment";
+
+const CACHE_INTERVAL_MS = getCacheInterval(300);
 
 store.dispatch(fetchProducts());
+
+const handleFetchProducts = () => {
+    store.dispatch(fetchProducts());
+};
+
+setInterval(handleFetchProducts, CACHE_INTERVAL_MS);
 
 ReactDOM.render(
     <React.StrictMode>

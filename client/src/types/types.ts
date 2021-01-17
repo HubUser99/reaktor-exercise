@@ -13,16 +13,14 @@ export type QuantityType =
 
 export type ProductsType = Array<ProductItemType>;
 
-export type AvailabilitiesType = Map<string, QuantityType>;
-
 export type StatusType = "loading" | "succeeded" | "failed";
 
 export type ErrorType = string | null;
 
 export interface ProductsState {
-    shirts: ProductsType;
-    jackets: ProductsType;
-    accessories: ProductsType;
+    gloves: ProductsType;
+    facemasks: ProductsType;
+    beanies: ProductsType;
     status: StatusType;
     error: ErrorType;
 }

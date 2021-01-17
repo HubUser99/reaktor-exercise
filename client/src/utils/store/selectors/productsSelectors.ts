@@ -1,11 +1,11 @@
 import { RootState } from "types/types";
 
-export const selectShirtsProducts = (state: RootState) => state.products.shirts;
+export const selectGlovesProducts = (state: RootState) => state.products.gloves;
 
-export const selectJacketsProducts = (state: RootState) =>
-    state.products.jackets;
+export const selectFacemasksProducts = (state: RootState) =>
+    state.products.facemasks;
 
-export const selectAccessoriesProducts = (state: RootState) =>
-    state.products.accessories;
+export const selectBeaniesProducts = (state: RootState) =>
+    state.products.beanies;
 
 export const selectProductsStatus = (state: RootState) => state.products.status;
