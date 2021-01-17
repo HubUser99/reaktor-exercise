@@ -9,14 +9,4 @@ export interface ProductItemApi {
     manufacturer: string;
 }
 
-export interface AvailabilitiesApi {
-    code: number;
-    response: AvailabilityItemApi[];
-}
-
-export interface AvailabilityItemApi {
-    id: string;
-    DATAPAYLOAD: string;
-}
-
-export type CategoryApi = "shirts" | "jackets" | "accessories";
+export type CategoryApi = "gloves" | "facemasks" | "beanies";

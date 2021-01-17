@@ -3,9 +3,9 @@ import { ProductsState } from "types/types";
 import { getProductsWithAvailabilities } from "utils/api/ApiInterfaceAdapter";
 
 const initialState: ProductsState = {
-    shirts: [],
-    jackets: [],
-    accessories: [],
+    gloves: [],
+    facemasks: [],
+    beanies: [],
     status: "loading",
     error: null,
 };
@@ -28,9 +28,9 @@ const productsSlice = createSlice({
         });
 
         builder.addCase(fetchProducts.fulfilled, (state, action) => {
-            state.shirts = action.payload.shirts;
-            state.jackets = action.payload.jackets;
-            state.accessories = action.payload.accessories;
+            state.gloves = action.payload.gloves;
+            state.facemasks = action.payload.facemasks;
+            state.beanies = action.payload.beanies;
             state.status = "succeeded";
         });
 

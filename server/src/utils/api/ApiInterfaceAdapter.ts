@@ -49,9 +49,9 @@ export const getAvailabilitiesForProducts = async (
 
 export const getProductsWithAvailabilities = async () => {
     const products = await Promise.all([
-        getProductsWithEmptyAvailabilities("shirts"),
-        getProductsWithEmptyAvailabilities("jackets"),
-        getProductsWithEmptyAvailabilities("accessories"),
+        getProductsWithEmptyAvailabilities("gloves"),
+        getProductsWithEmptyAvailabilities("facemasks"),
+        getProductsWithEmptyAvailabilities("beanies"),
     ]);
 
     const availabilities = await getAvailabilitiesForProducts(products.flat());
@@ -69,26 +69,26 @@ export const getProductsWithAvailabilities = async () => {
 
             switch (currentIndex) {
                 case 0:
-                    prevState.shirts = productsWithAvailabilities;
+                    prevState.gloves = productsWithAvailabilities;
                     break;
                 case 1:
-                    prevState.jackets = productsWithAvailabilities;
+                    prevState.facemasks = productsWithAvailabilities;
                     break;
                 case 2:
-                    prevState.accessories = productsWithAvailabilities;
+                    prevState.beanies = productsWithAvailabilities;
                     break;
             }
 
             return prevState;
         },
         {
-            shirts: [],
-            jackets: [],
-            accessories: [],
+            gloves: [],
+            facemasks: [],
+            beanies: [],
         } as {
-            shirts: ProductsType;
-            jackets: ProductsType;
-            accessories: ProductsType;
+            gloves: ProductsType;
+            facemasks: ProductsType;
+            beanies: ProductsType;
         }
     );
 

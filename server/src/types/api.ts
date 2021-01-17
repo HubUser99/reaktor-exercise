@@ -19,4 +19,4 @@ export interface AvailabilityItemApi {
     DATAPAYLOAD: string;
 }
 
-export type CategoryApi = "shirts" | "jackets" | "accessories";
+export type CategoryApi = "gloves" | "facemasks" | "beanies";

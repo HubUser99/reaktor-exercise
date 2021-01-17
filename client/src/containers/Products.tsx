@@ -1,5 +1,5 @@
+import { useState } from "react";
 import Product from "components/Product";
-import React, { useState } from "react";
 import styles from "styles/products.module.css";
 import { ProductsType } from "types/types";
 import { getChunks } from "utils/common/common";
@@ -22,13 +22,18 @@ const Products = ({ products }: Props) => {
 
     return (
         <div className={styles.productsWrapper}>
-            {getProductsChunks()
+            {/* {Uncomment to make use of chuck loading} */}
+            {/* {getProductsChunks()
                 .slice(0, lastChunkIndex)
                 .map((chunk) =>
-                    chunk.map((product) => (
+                    products.map((product) => (
                         <Product product={product} key={product.id} />
                     ))
-                )}
+                )} */}
+            
+            {products.map((product) => (
+                <Product product={product} key={product.id} />
+            ))}
         </div>
     );
 };

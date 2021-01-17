@@ -9,3 +9,12 @@ export const getBaseUrl = () => {
 
     return baseUrl;
 };
+
+export const getCacheInterval = (fallbackSeconds: number) => {
+    const cacheInterval = parseInt(
+        process.env.REACT_APP_CACHE_INTERVAL_SECONDS ??
+            fallbackSeconds.toString()
+    );
+
+    return cacheInterval * 1000;
+};

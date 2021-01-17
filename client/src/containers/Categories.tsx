@@ -1,33 +1,33 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useSelector } from "react-redux";
 import styles from "styles/categories.module.css";
 import { CategoryApi } from "types/api";
 import {
-    selectAccessoriesProducts,
-    selectJacketsProducts,
+    selectBeaniesProducts,
+    selectFacemasksProducts,
     selectProductsStatus,
-    selectShirtsProducts,
+    selectGlovesProducts,
 } from "utils/store/selectors/productsSelectors";
 import Products from "./Products";
 
 const Categories = () => {
-    const [category, setCategory] = useState<CategoryApi>("shirts");
+    const [category, setCategory] = useState<CategoryApi>("gloves");
 
-    const shirtsProducts = useSelector(selectShirtsProducts);
-    const jacketsProducts = useSelector(selectJacketsProducts);
-    const accessoriesProducts = useSelector(selectAccessoriesProducts);
+    const glovesProducts = useSelector(selectGlovesProducts);
+    const facemasksProducts = useSelector(selectFacemasksProducts);
+    const beaniesProducts = useSelector(selectBeaniesProducts);
     const productsStatus = useSelector(selectProductsStatus);
 
     const isLoading = productsStatus !== "succeeded";
 
     const getProductsByCategory = () => {
         switch (category) {
-            case "shirts":
-                return shirtsProducts;
-            case "jackets":
-                return jacketsProducts;
-            case "accessories":
-                return accessoriesProducts;
+            case "gloves":
+                return glovesProducts;
+            case "facemasks":
+                return facemasksProducts;
+            case "beanies":
+                return beaniesProducts;
         }
     };
 
@@ -43,14 +43,14 @@ const Categories = () => {
                 <Products products={getProductsByCategory()} />
             )}
             <div className={styles.categoriesButtonsWrapper}>
-                <button onClick={() => handleCategoryChange("shirts")}>
-                    Shirts
+                <button onClick={() => handleCategoryChange("gloves")}>
+                    Gloves
                 </button>
-                <button onClick={() => handleCategoryChange("jackets")}>
-                    Jackets
+                <button onClick={() => handleCategoryChange("facemasks")}>
+                    Facemasks
                 </button>
-                <button onClick={() => handleCategoryChange("accessories")}>
-                    Accessories
+                <button onClick={() => handleCategoryChange("beanies")}>
+                    Beanies
                 </button>
             </div>
         </>
